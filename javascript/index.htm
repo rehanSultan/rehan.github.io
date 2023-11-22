@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Personalized Greeting</title>
+</head>
+
+<body>
+    <h1>Welcome to the website!</h1>
+    <img style="height: 60vh;" src="images/cycle.jpg" alt="invalid response">
+    <button>Change user</button>
+
+    <script>
+        let myButton = document.querySelector("button");
+        let myHeading = document.querySelector("h1");
+        myButton.onclick = () => {
+            setUserName();
+        }
+        function setUserName() {
+            const userName = prompt("Please enter your name: ");
+            if (!userName) {
+                setUserName();
+            } else {
+                localStorage.setItem("name", userName);
+                myHeading.innerHTML = `Hello ${userName}, Happy to see you!`;
+            }
+        }
+        if (!localStorage.getItem("name")) {
+            setUserName();
+        } else {
+            let storedName = localStorage.getItem("name");
+            myHeading.innerHTML = `Welcome back, ${storedName}!`;
+        }
+
+
+        const myImage = document.querySelector("img");
+
+        myImage.onclick = () => {
+            const mySrc = myImage.getAttribute("src");
+            if (mySrc === "images/cycle.jpg") {
+                alert("You clicked smiley!");
+                myImage.setAttribute("src", "images/smile.jpg");
+            } else {
+                myImage.setAttribute("src", "images/smile.jpg");
+            }
+        };
+
+    </script>
+</body>
+
+</html>
